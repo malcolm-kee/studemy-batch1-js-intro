@@ -11,6 +11,8 @@ const apiRouter = require('./routes/api');
 
 var app = express();
 
+console.log('test commit');
+
 app.use(logger('dev'));
 app.use(cors());
 app.use(
