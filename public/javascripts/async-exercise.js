@@ -13,6 +13,22 @@ function getServerTime(callback) {
 
 getServerTime((serverDate) => console.log(`Server date is ${serverDate}`));
 
+function getServerTimeV2() {
+  return new Promise((resolve) => {
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.open('HEAD', window.location.href);
+    xmlHttp.setRequestHeader('Content-Type', 'text/html');
+    xmlHttp.addEventListener('load', () => {
+      resolve(xmlHttp.getResponseHeader('Date'));
+    });
+    xmlHttp.send('');
+  });
+}
+
+getServerTimeV2().then((serverDate) =>
+  console.log(`Server date with Promise is ${serverDate}`)
+);
+
 /*================================================================================
 |--------------------------------------------------------------------------------|
 ================================================================================*/
