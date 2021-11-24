@@ -1,4 +1,5 @@
 // wrap code in IIFE
+
 (function () {
   fetch('/api/pokemons')
     .then((res) => res.json())
