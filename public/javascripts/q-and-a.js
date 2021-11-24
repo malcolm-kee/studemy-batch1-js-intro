@@ -31,6 +31,17 @@
   // question "What is your age?" and the log the result as "The age is <provided age>."
   // E.g. when user enter 21, you should log "The age is 21."
   const askAgeBtn = document.querySelector('#ask-age-btn');
+  askAgeBtn.addEventListener('click', () => {
+    helpers.prompt(
+      {
+        type: 'question',
+        label: 'What is your age?'
+      },
+      (answer) => {
+        console.log('The age is ', answer);
+      }
+    );
+  });
 
   // TODO: write code so that when user click "NSFW Content" button, prompt them with
   // the question "The following content is NSFW. Are you sure you want to proceed?",
@@ -39,4 +50,29 @@
   // finally log the message "User choose to proceed with age <provided age>.".
   // - If user click No, log the message "User choose to not proceed."
   const nsfwBtn = document.querySelector('#nsfw-btn');
+
+  nsfwBtn.addEventListener('click', () => {
+    helpers.prompt(
+      {
+        type: 'confirmation',
+        label:
+          'The following content is NSFW. Are you sure you want to proceed?'
+      },
+      (toProceed) => {
+        if (toProceed) {
+          helpers.prompt(
+            {
+              type: 'question',
+              label: 'What is your age?'
+            },
+            (providedAge) => {
+              console.log('User choose to proceed with age ', providedAge);
+            }
+          );
+        } else {
+          console.log('User choose to not proceed.');
+        }
+      }
+    );
+  });
 })();

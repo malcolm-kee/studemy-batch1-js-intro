@@ -33,22 +33,26 @@ const helpers = (function () {
       method: 'post',
       body: JSON.stringify({ email })
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(onSuccess)
       .catch(onError);
   }
 
   function createButton({ text, variant = 'primary' }) {
     const $button = document.createElement('button');
-    $button.className = 'inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md ' +
-      (variant === 'primary' ? 'text-white bg-pink-500 hover:bg-pink-800' : 'text-pink-500');
+    $button.className =
+      'inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md ' +
+      (variant === 'primary'
+        ? 'text-white bg-pink-500 hover:bg-pink-800'
+        : 'text-pink-500');
     $button.innerText = text;
     return $button;
   }
 
   function createInput(type = 'text') {
     const $input = document.createElement('input');
-    $input.className = 'w-full px-5 py-3 placeholder-gray-500 focus:ring-pink-500 focus:border-pink-500 border-gray-300 rounded-md';
+    $input.className =
+      'w-full px-5 py-3 placeholder-gray-500 focus:ring-pink-500 focus:border-pink-500 border-gray-300 rounded-md';
     $input.type = type;
     return $input;
   }
@@ -56,7 +60,8 @@ const helpers = (function () {
   function createModal() {
     // create the wrapper to cover the entire screen
     const $root = document.createElement('div');
-    $root.className = 'hidden fixed inset-0 h-screen w-screen flex items-center justify-center p-6';
+    $root.className =
+      'hidden fixed inset-0 h-screen w-screen flex items-center justify-center p-6';
 
     // create the backdrop to prevent user to click other element
     const $backdrop = document.createElement('div');
@@ -68,7 +73,8 @@ const helpers = (function () {
     const $modalBody = document.createElement('div');
     $modalBody.className = 'p-3';
     const $modalFooter = document.createElement('div');
-    $modalFooter.className = 'p-3 border-t border-gray-200 text-right space-x-3';
+    $modalFooter.className =
+      'p-3 border-t border-gray-200 text-right space-x-3';
 
     $modal.appendChild($modalBody);
     $modal.appendChild($modalFooter);
@@ -103,11 +109,11 @@ const helpers = (function () {
   }
 
   /**
-   * 
+   *
    * @param {Object} options
-   * @param {'question' | 'confirmation'} options.type 
+   * @param {'question' | 'confirmation'} options.type
    * @param {string} options.label
-   * @param {(result: string) => void} callback 
+   * @param {(result: string) => void} callback
    */
   function prompt({ type = 'question', label }, callback) {
     const { destroyModal, showModal, body, footer } = createModal();
