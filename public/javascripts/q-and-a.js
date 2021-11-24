@@ -2,6 +2,7 @@
 
 (function initGuide() {
   const questionDemoBtn = document.querySelector('#question-demo-btn');
+
   questionDemoBtn.addEventListener('click', () => {
     helpers.prompt(
       {
