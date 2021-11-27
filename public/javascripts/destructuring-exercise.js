@@ -13,10 +13,16 @@ logTodosPlan(['eat', 'sleep', 'code', 'read', 'watch Avengers', 'get a gf/bf']);
 
 // Exercise 2: rewrite the following function to use destructuring
 function logPerson(person) {
-  const name = person.name;
-  const firstName = name.firstName;
-  const lastName = name.lastName;
-  const age = person.age;
+  // const name = person.name;
+  // const { name, age } = person;
+  // const { firstName, lastName } = name;
+  const {
+    name: { firstName, lastName },
+    age
+  } = person;
+  // const firstName = name.firstName;
+  // const lastName = name.lastName;
+  // const age = person.age;
   console.log(firstName + ' ' + lastName + ', aged ' + age);
 }
 const persons = [
