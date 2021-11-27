@@ -6,15 +6,11 @@ function wait(ms) {
 
 console.log('Start');
 
-wait(1000)
-  .then(() => {
-    console.log('1 sec passed');
-    return wait(2000);
-  })
-  .then(() => {
-    console.log('another 2 sec passed');
-    return wait(2000);
-  })
-  .then(() => {
-    console.log('End');
-  });
+(async function () {
+  await wait(1000);
+  console.log('1 sec passed');
+  await wait(2000);
+  console.log('another 2 sec passed');
+  await wait(2000);
+  console.log('End');
+})();

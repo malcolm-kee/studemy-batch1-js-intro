@@ -1,21 +1,17 @@
 // wrap code in IIFE
+function showPokemons(pokemons) {
+  console.log({ data: pokemons });
 
-(function () {
-  fetch('/api/pokemons')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log({ data });
+  const pokemonList = document.querySelector('#pokemon-list');
 
-      const pokemonList = document.querySelector('#pokemon-list');
+  pokemonList.innerHTML = '';
 
-      pokemonList.innerHTML = '';
+  pokemons.forEach((pokemon) => {
+    const li = document.createElement('li');
+    li.className =
+      'col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200';
 
-      data.forEach((pokemon) => {
-        const li = document.createElement('li');
-        li.className =
-          'col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200';
-
-        li.innerHTML = `
+    li.innerHTML = `
         <div class="flex-1 flex flex-col p-8">
         <img
         class="w-32 h-32 flex-shrink-0 mx-auto bg-gray-200 rounded-full"
@@ -31,15 +27,36 @@
         </div>
         `;
 
-        pokemonList.append(li);
-      });
-    });
+    pokemonList.append(li);
+  });
+}
 
-  // fetch pokemon list from `/api/pokemons`
+// (function () {
+//   fetch('/api/pokemons')
+//     .then((res) => {
+//       console.log('line 37');
+//       return res.json();
+//     })
+//     .then((data) => {
+//       showPokemons(data);
+//     });
 
-  // remove the placeholder in #pokemon-list
+//   console.log('line 43');
+// })();
 
-  /* For each pokemon,
+(async function () {
+  console.log('48');
+  const res = await fetch('/api/pokemons');
+  console.log('50');
+  const data = await res.json();
+  showPokemons(data);
+})();
+
+// fetch pokemon list from `/api/pokemons`
+
+// remove the placeholder in #pokemon-list
+
+/* For each pokemon,
 1. create a li element with class 'col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200'
 2. the li element should have the following inner HTML:
 <div class="flex-1 flex flex-col p-8">
@@ -57,4 +74,4 @@ ${pokemon.name.english}
 </div>
 3. append the li element to #pokemon-list
 */
-})();
+// })();

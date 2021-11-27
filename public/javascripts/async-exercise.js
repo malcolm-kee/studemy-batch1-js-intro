@@ -38,12 +38,19 @@ function wait(second) {
   return new Promise((resolve) => setTimeout(resolve, second * 1000));
 }
 
-function fetchPricingData() {
-  return fetch('/api/pricing').then((res) => res.json());
+async function fetchPricingData() {
+  const res = await fetch('/api/pricing');
+  return res.json();
 }
 
-function fetchDataThenWait() {
-  return fetchPricingData().then((pricingData) => {
-    return wait(1).then(() => pricingData);
-  });
+// function fetchDataThenWait() {
+//   return fetchPricingData().then((pricingData) => {
+//     return wait(1).then(() => pricingData);
+//   });
+// }
+
+async function fetchDataThenWait() {
+  const pricingData = await fetchPricingData();
+  await wait(1);
+  return pricingData;
 }

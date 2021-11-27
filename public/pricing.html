@@ -715,5 +715,22 @@
     <script src="javascripts/script.js"></script>
     <script src="javascripts/footer.js"></script>
     <script src="javascripts/pricing.js"></script>
+    <script>
+      const x = '1';
+      const y = String(1000) + 1;
+
+      fetch('https://icanhazdadjoke.com/', {
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((result) => {
+          console.log({ result });
+          console.log(typeof result);
+        });
+    </script>
   </body>
 </html>
